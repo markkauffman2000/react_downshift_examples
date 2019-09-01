@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import "./styles.css";
 
 import './App.css';
-import DownshiftBasicSelect from './DownshiftBasicSelect';
 
+import DownshiftMoviesWithAxios from './DownshiftMoviesWithAxios';
 
 function App() {
   return (
   <div>
 
-    <DownshiftBasicSelect />
+    <DownshiftMoviesWithAxios />
 
   </div>
 

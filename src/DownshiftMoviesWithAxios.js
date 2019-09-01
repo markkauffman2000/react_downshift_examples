@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import Downshift from 'downshift';
 
 class DownshiftMoviesWithAxios extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,66 +33,68 @@ class DownshiftMoviesWithAxios extends Component {
     });
   }
 
+
   render() {
+
     return (
       <Downshift
-        onChange={this.downshiftOnChange}
-        itemToString={item => (item ? item.title : "")}
-      >
-        {({
-          selectedItem,
-          getInputProps,
-          getItemProps,
-          highlightedIndex,
-          isOpen,
-          inputValue,
-          getLabelProps
-        }) => (
-          <div>
-            <label
-              style={{ marginTop: "1rem", display: "block" }}
-              {...getLabelProps()}
-            >
-              Choose your favourite movie
-            </label>{" "}
-            <br />
-            <input
-              {...getInputProps({
-                placeholder: "Search movies",
-                onChange: this.inputOnChange
-              })}
-            />
-            {isOpen ? (
-              <div className="downshift-dropdown">
-                {this.state.movies
-                  .filter(
-                    item =>
-                      !inputValue ||
-                      item.title
-                        .toLowerCase()
-                        .includes(inputValue.toLowerCase())
-                  )
-                  .slice(0, 10)
-                  .map((item, index) => (
-                    <div
-                      className="dropdown-item"
-                      {...getItemProps({ key: index, index, item })}
-                      style={{
-                        backgroundColor:
-                          highlightedIndex === index ? "lightgray" : "white",
-                        fontWeight: selectedItem === item ? "bold" : "normal"
-                      }}
-                    >
-                      {item.title}
-                    </div>
-                  ))}
-              </div>
-            ) : null}
-          </div>
-        )}
-      </Downshift>
+      onChange={this.downshiftOnChange}
+      itemToString={item => (item ? item.title : "")}
+    >
+      {({
+        selectedItem,
+        getInputProps,
+        getItemProps,
+        highlightedIndex,
+        isOpen,
+        inputValue,
+        getLabelProps
+      }) => (
+        <div>
+          <label
+            style={{ marginTop: "1rem", display: "block" }}
+            {...getLabelProps()}
+          >
+            Choose your favourite movie
+          </label>{" "}
+          <br />
+          <input
+            {...getInputProps({
+              placeholder: "Search movies",
+              onChange: this.inputOnChange
+            })}
+          />
+          {isOpen ? (
+            <div className="downshift-dropdown">
+              {this.state.movies
+                .filter(
+                  item =>
+                    !inputValue ||
+                    item.title
+                      .toLowerCase()
+                      .includes(inputValue.toLowerCase())
+                )
+                .slice(0, 10)
+                .map((item, index) => (
+                  <div
+                    className="dropdown-item"
+                    {...getItemProps({ key: index, index, item })}
+                    style={{
+                      backgroundColor:
+                        highlightedIndex === index ? "lightgray" : "white",
+                      fontWeight: selectedItem === item ? "bold" : "normal"
+                    }}
+                  >
+                    {item.title}
+                  </div>
+                ))}
+            </div>
+          ) : null}
+        </div>
+      )}
+    </Downshift>
     );
   }
 }
 
-export default {DownshiftMoviesWithAxios};
+export default DownshiftMoviesWithAxios
